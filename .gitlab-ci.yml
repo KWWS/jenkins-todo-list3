@@ -1,5 +1,17 @@
+stages:
+- pre-build
+- build
+- test
+- deploy
 
 build-docker:
-  stage: build     
+  stage: pre-build     
   script:
   - docker build -t minha-imagem .
+
+build-project:
+  stage: build
+  dependencies:
+  - build-docker
+  script:
+  - echo "Ola"
